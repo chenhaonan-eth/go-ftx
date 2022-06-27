@@ -7,10 +7,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/chenhaonan-eth/go-ftx/rest"
+	"github.com/chenhaonan-eth/go-ftx/rest/public/futures"
+	"github.com/chenhaonan-eth/go-ftx/rest/public/markets"
 	"github.com/dustin/go-humanize"
-	"github.com/go-numb/go-ftx/rest"
-	"github.com/go-numb/go-ftx/rest/public/futures"
-	"github.com/go-numb/go-ftx/rest/public/markets"
 	"github.com/stretchr/testify/assert"
 )
 

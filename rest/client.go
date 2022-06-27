@@ -3,9 +3,10 @@ package rest
 import (
 	"time"
 
-	"github.com/go-numb/go-ftx/auth"
+	"github.com/chenhaonan-eth/go-ftx/auth"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/valyala/fasthttp"
+	"github.com/valyala/fasthttp/fasthttpproxy"
 )
 
 const ENDPOINT = "https://ftx.com/api"
@@ -19,8 +20,10 @@ type Client struct {
 	HTTPTimeout time.Duration
 }
 
-func New(auth *auth.Config) *Client {
-	hc := new(fasthttp.Client)
+func New(auth *auth.Config, proxy string) *Client {
+	hc := &fasthttp.Client{
+		Dial: fasthttpproxy.FasthttpHTTPDialer(proxy),
+	}
 
 	return &Client{
 		Auth:        auth,
