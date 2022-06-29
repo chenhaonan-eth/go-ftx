@@ -130,11 +130,9 @@ func ping(conn *websocket.Conn) (err error) {
 	defer ticker.Stop()
 
 	for {
-		select {
-		case <-ticker.C:
-			if err := conn.WriteMessage(websocket.PingMessage, []byte(`{"op": "pong"}`)); err != nil {
-				goto EXIT
-			}
+		<-ticker.C
+		if err := conn.WriteMessage(websocket.PingMessage, []byte(`{"op": "pong"}`)); err != nil {
+			goto EXIT
 		}
 	}
 EXIT:
@@ -145,7 +143,8 @@ func Connect(ctx context.Context, ch chan Response, channels, symbols []string, 
 	if l == nil {
 		l = log.New(os.Stdout, "ftx websocket", log.Llongfile)
 	}
-
+	os.Setenv("HTTP_PROXY", "http://127.0.0.1:10809")
+	os.Setenv("HTTPS_PROXY", "http://127.0.0.1:10809")
 	conn, _, err := websocket.DefaultDialer.Dial("wss://ftx.com/ws/", nil)
 	if err != nil {
 		return err
@@ -183,8 +182,7 @@ func Connect(ctx context.Context, ch chan Response, channels, symbols []string, 
 				ch <- res
 				break RESTART
 			}
-
-			typeMsg, err := jsonparser.GetString(msg, "type")
+			typeMsg, _ := jsonparser.GetString(msg, "type")
 			if typeMsg == "error" {
 				l.Printf("[ERROR]: error: %+v", string(msg))
 				res.Type = ERROR
@@ -310,7 +308,7 @@ func ConnectForPrivate(ctx context.Context, ch chan Response, key, secret string
 				break RESTART
 			}
 
-			typeMsg, err := jsonparser.GetString(msg, "type")
+			typeMsg, _ := jsonparser.GetString(msg, "type")
 			if typeMsg == "error" {
 				l.Printf("[ERROR]: error: %+v", string(msg))
 				res.Type = ERROR

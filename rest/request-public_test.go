@@ -18,7 +18,7 @@ import (
 	# Markets
 */
 func TestMarkets(t *testing.T) {
-	c := rest.New(nil)
+	c := rest.New(nil, "")
 	res, err := c.Markets(&markets.RequestForMarkets{
 		ProductCode: "MNGO/USD",
 	})
@@ -30,7 +30,7 @@ func TestMarkets(t *testing.T) {
 }
 
 func TestOrderbook(t *testing.T) {
-	c := rest.New(nil)
+	c := rest.New(nil, "")
 	res, err := c.Orderbook(&markets.RequestForOrderbook{
 		ProductCode: "BTC-PERP",
 		Depth:       10,
@@ -41,7 +41,7 @@ func TestOrderbook(t *testing.T) {
 }
 
 func TestTrades(t *testing.T) {
-	c := rest.New(nil)
+	c := rest.New(nil, "")
 	res, err := c.Trades(&markets.RequestForTrades{
 		ProductCode: "BTC-PERP",
 		Limit:       100,
@@ -57,7 +57,9 @@ func TestTrades(t *testing.T) {
 }
 
 func TestCandles(t *testing.T) {
-	c := rest.New(nil)
+	// os.Setenv("HTTP_PROXY", "http://127.0.0.1:10809")
+	// os.Setenv("HTTPS_PROXY", "http://127.0.0.1:10809")
+	c := rest.New(nil, "127.0.0.1:10809")
 	res, err := c.Candles(&markets.RequestForCandles{
 		ProductCode: "BTC-PERP",
 		Resolution:  900,                                       // optional
@@ -73,7 +75,7 @@ func TestCandles(t *testing.T) {
 	# Futures
 */
 func TestFutures(t *testing.T) {
-	c := rest.New(nil)
+	c := rest.New(nil, "")
 	res, err := c.Futures(&futures.RequestForFutures{})
 	assert.NoError(t, err)
 
@@ -87,7 +89,7 @@ func TestFutures(t *testing.T) {
 }
 
 func TestFuture(t *testing.T) {
-	c := rest.New(nil)
+	c := rest.New(nil, "")
 	res, err := c.Future(&futures.RequestForFuture{
 		ProductCode: "BTC-PERP",
 	})
@@ -97,7 +99,7 @@ func TestFuture(t *testing.T) {
 }
 
 func TestStats(t *testing.T) {
-	c := rest.New(nil)
+	c := rest.New(nil, "")
 	res, err := c.Stats(&futures.RequestForStats{
 		ProductCode: "BTC-PERP",
 	})
@@ -107,7 +109,7 @@ func TestStats(t *testing.T) {
 }
 
 func TestGetFundingRate(t *testing.T) {
-	c := rest.New(nil)
+	c := rest.New(nil, "")
 	res, err := c.Futures(&futures.RequestForFutures{})
 	assert.NoError(t, err)
 
@@ -174,7 +176,7 @@ func TestGetFundingRate(t *testing.T) {
 }
 
 func TestMultiUnderlyingsRates(t *testing.T) {
-	c := rest.New(nil)
+	c := rest.New(nil, "")
 	res, err := c.Rates(&futures.RequestForRates{})
 	assert.NoError(t, err)
 
@@ -203,7 +205,7 @@ func TestMultiUnderlyingsRates(t *testing.T) {
 }
 
 func TestSingleUnderlyingRates(t *testing.T) {
-	c := rest.New(nil)
+	c := rest.New(nil, "")
 	res, err := c.Rates(&futures.RequestForRates{
 		ProductCode: "BTC-PERP",
 		Start:       time.Now().Add(-900 * time.Second).Unix(), // optional

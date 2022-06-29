@@ -27,7 +27,7 @@ func TestURIEncode(t *testing.T) {
 }
 
 func TestInformation(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.Information(&account.RequestForInformation{})
 	assert.NoError(t, err)
@@ -36,7 +36,7 @@ func TestInformation(t *testing.T) {
 }
 
 func TestPositions(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.Positions(&account.RequestForPositions{})
 	assert.NoError(t, err)
@@ -45,7 +45,7 @@ func TestPositions(t *testing.T) {
 }
 
 func TestLeverage(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.Leverage(&account.RequestForLeverage{
 		Leverage: 3,
@@ -56,7 +56,7 @@ func TestLeverage(t *testing.T) {
 }
 
 func TestCoins(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.Coins(&wallet.RequestForCoins{})
 	assert.NoError(t, err)
@@ -65,7 +65,7 @@ func TestCoins(t *testing.T) {
 }
 
 func TestBalances(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.Balances(&wallet.RequestForBalances{})
 	assert.NoError(t, err)
@@ -74,7 +74,7 @@ func TestBalances(t *testing.T) {
 }
 
 func TestBalancesAll(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.BalancesAll(&wallet.RequestForBalancesAll{})
 	assert.NoError(t, err)
@@ -83,7 +83,7 @@ func TestBalancesAll(t *testing.T) {
 }
 
 func TestDepositAddress(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.DepositAddress(&wallet.RequestForDepositAddress{
 		Coin:    "BTC",
@@ -95,7 +95,7 @@ func TestDepositAddress(t *testing.T) {
 }
 
 func TestDepositHistories(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.DepositHistories(&wallet.RequestForDepositHistories{})
 	assert.NoError(t, err)
@@ -104,7 +104,7 @@ func TestDepositHistories(t *testing.T) {
 }
 
 func TestWithdrawHistories(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.WithdrawHistories(&wallet.RequestForWithdrawHistories{})
 	assert.NoError(t, err)
@@ -113,7 +113,7 @@ func TestWithdrawHistories(t *testing.T) {
 }
 
 func TestWithdraw(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.Withdraw(&wallet.RequestForWithdraw{})
 	assert.NoError(t, err)
@@ -122,7 +122,7 @@ func TestWithdraw(t *testing.T) {
 }
 
 func TestOpenOrder(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OpenOrder(&orders.RequestForOpenOrder{})
 	assert.NoError(t, err)
@@ -131,7 +131,7 @@ func TestOpenOrder(t *testing.T) {
 }
 
 func TestOrderHistories(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OrderHistories(&orders.RequestForHistories{})
 	assert.NoError(t, err)
@@ -140,7 +140,7 @@ func TestOrderHistories(t *testing.T) {
 }
 
 func TestOpenTriggerOrders(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OpenTriggerOrders(&orders.RequestForOpenTriggerOrders{})
 	assert.NoError(t, err)
@@ -149,7 +149,7 @@ func TestOpenTriggerOrders(t *testing.T) {
 }
 
 func TestOrderTriggers(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OrderTriggers(&orders.RequestForOrderTriggers{
 		CID: "38066650",
@@ -160,7 +160,7 @@ func TestOrderTriggers(t *testing.T) {
 }
 
 func TestOrderTriggerHistories(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OrderTriggerHistories(&orders.RequestForOrderTriggerHistories{})
 	assert.NoError(t, err)
@@ -170,7 +170,7 @@ func TestOrderTriggerHistories(t *testing.T) {
 
 // TODO: in production
 func TestPlaceOrder(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.PlaceOrder(&orders.RequestForPlaceOrder{
 		Type:   types.LIMIT,
@@ -191,7 +191,7 @@ func TestPlaceOrder(t *testing.T) {
 
 // TODO: in production
 func TestPlaceTriggerOrder(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.PlaceTriggerOrder(&orders.RequestForPlaceTriggerOrder{
 		Type:         "trailingStop",
@@ -210,7 +210,7 @@ func TestPlaceTriggerOrder(t *testing.T) {
 
 // TODO: in production
 func TestModifyOrder(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.ModifyOrder(&orders.RequestForModifyOrder{
 		OrderID: "erafa",
@@ -225,7 +225,7 @@ func TestModifyOrder(t *testing.T) {
 }
 
 func TestModifyTriggerOrder(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	// https://docs.ftx.com/#modify-trigger-order
 	res, err := c.ModifyTriggerOrder(&orders.RequestForModifyTriggerOrder{
@@ -240,7 +240,7 @@ func TestModifyTriggerOrder(t *testing.T) {
 }
 
 func TestOrderStatus(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OrderStatus(&orders.RequestForOrderStatus{
 		OrderID: 000,
@@ -253,7 +253,7 @@ func TestOrderStatus(t *testing.T) {
 }
 
 func TestCancelByID(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.CancelByID(&orders.RequestForCancelByID{
 		OrderID: 000,
@@ -266,7 +266,7 @@ func TestCancelByID(t *testing.T) {
 }
 
 func TestCancelAll(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.CancelAll(&orders.RequestForCancelAll{
 		ProductCode: "",
@@ -280,7 +280,7 @@ func TestCancelAll(t *testing.T) {
 	fmt.Printf("%+v\n", res)
 }
 func TestFills(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.Fills(&fills.Request{
 		ProductCode: "",
@@ -294,7 +294,7 @@ func TestFills(t *testing.T) {
 	# Spot Margin
 */
 func TestGetLendingInfo(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.GetLendingInfo(&spotmargin.RequestForLendingInfo{})
 	assert.NoError(t, err)
@@ -303,7 +303,7 @@ func TestGetLendingInfo(t *testing.T) {
 }
 
 func TestGetLendingRates(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.GetLendingRates(&spotmargin.RequestForLendingRates{})
 	assert.NoError(t, err)
@@ -312,11 +312,11 @@ func TestGetLendingRates(t *testing.T) {
 }
 
 func TestGetLendingHistory(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.GetLendingHistory(&spotmargin.RequestForLendingHistory{
-		StartTime: time.Now().Add(-30 * time.Hour),
-		EndTime:   time.Now(),
+		StartTime: time.Now().Add(-30 * time.Hour).Unix(),
+		EndTime:   time.Now().Unix(),
 	})
 	assert.NoError(t, err)
 
@@ -324,7 +324,7 @@ func TestGetLendingHistory(t *testing.T) {
 }
 
 func TestSubmitLendingOffer(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.SubmitLendingOffer(&spotmargin.RequestForLendingOffer{
 		Coin: "USD",
@@ -337,7 +337,7 @@ func TestSubmitLendingOffer(t *testing.T) {
 }
 
 func TestGetBorrowRates(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.GetBorrowRates(&spotmargin.RequestForBorrowRates{})
 	assert.NoError(t, err)
@@ -346,7 +346,7 @@ func TestGetBorrowRates(t *testing.T) {
 }
 
 func TestGetBorrowHistory(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.GetBorrowHistory(&spotmargin.RequestForBorrowHistory{})
 	assert.NoError(t, err)
@@ -358,7 +358,7 @@ func TestGetBorrowHistory(t *testing.T) {
 	# SubAccount
 */
 func TestSubAccounts(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.SubAccounts(&subaccount.RequestForSubAccounts{})
 	assert.NoError(t, err)
@@ -367,7 +367,7 @@ func TestSubAccounts(t *testing.T) {
 }
 
 func TestCreateSubAccount(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.CreateSubAccount(&subaccount.RequestForCreateSubAccount{
 		NickName: "testuse",
@@ -378,7 +378,7 @@ func TestCreateSubAccount(t *testing.T) {
 }
 
 func TestChangeSubAccount(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.ChangeSubAccount(&subaccount.RequestForChangeSubAccount{
 		NickName:    "testuse",
@@ -390,7 +390,7 @@ func TestChangeSubAccount(t *testing.T) {
 }
 
 func TestDeleteSubAccount(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.DeleteSubAccount(&subaccount.RequestForDeleteSubAccount{
 		NickName: "testuse",
@@ -401,7 +401,7 @@ func TestDeleteSubAccount(t *testing.T) {
 }
 
 func TestBalanceSubAccount(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.BalanceSubAccount(&subaccount.RequestForBalanceSubAccount{
 		NickName: "testuse",
@@ -412,7 +412,7 @@ func TestBalanceSubAccount(t *testing.T) {
 }
 
 func TestTransferSubAccount(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.TransferSubAccount(&subaccount.RequestForTransferSubAccount{
 		Coin:        "BTC",

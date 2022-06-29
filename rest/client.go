@@ -24,7 +24,9 @@ func New(auth *auth.Config, proxy string) *Client {
 	hc := &fasthttp.Client{
 		Dial: fasthttpproxy.FasthttpHTTPDialer(proxy),
 	}
-
+	if proxy == "" {
+		hc = new(fasthttp.Client)
+	}
 	return &Client{
 		Auth:        auth,
 		HTTPC:       hc,

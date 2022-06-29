@@ -21,7 +21,7 @@ import (
 	# Leveraged tokens
 */
 func TestLevTokens(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.LvTokens(&leveraged.RequestForLvTokens{})
 	assert.NoError(t, err)
@@ -31,7 +31,7 @@ func TestLevTokens(t *testing.T) {
 }
 
 func TestLvToken(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.LvToken(&leveraged.RequestForLvToken{
 		ProductCode: "BULL",
@@ -42,7 +42,7 @@ func TestLvToken(t *testing.T) {
 }
 
 func TestCreatedLvTokens(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.CreatedLvTokens(&leveraged.RequestForCreatedLvTokens{})
 	assert.NoError(t, err)
@@ -51,7 +51,7 @@ func TestCreatedLvTokens(t *testing.T) {
 }
 
 func TestCreatedLvToken(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.CreatedLvToken(&leveraged.RequestForCreatedLvToken{
 		ProductCode: "BULL",
@@ -62,7 +62,7 @@ func TestCreatedLvToken(t *testing.T) {
 }
 
 func TestRedemptionLvTokens(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.RedemptionLvTokens(&leveraged.RequestForRedemptionLvTokens{})
 	assert.NoError(t, err)
@@ -71,7 +71,7 @@ func TestRedemptionLvTokens(t *testing.T) {
 }
 
 func TestRedemptionLvToken(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.RedemptionLvToken(&leveraged.RequestForRedemptionLvToken{
 		ProductCode: "BULL",
@@ -82,7 +82,7 @@ func TestRedemptionLvToken(t *testing.T) {
 }
 
 func TestLvBalances(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.LvBalances(&leveraged.RequestForLvBalances{})
 	assert.NoError(t, err)
@@ -95,7 +95,7 @@ func TestLvBalances(t *testing.T) {
 */
 
 func TestOpQuoteRequests(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OpQuoteRequests(&options.RequestForOpQuoteRequests{})
 	assert.NoError(t, err)
@@ -104,7 +104,7 @@ func TestOpQuoteRequests(t *testing.T) {
 }
 
 func TestMyOpQuoteRequests(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.MyOpQuoteRequests(&options.RequestForMyOpQuoteRequests{})
 	assert.NoError(t, err)
@@ -113,7 +113,7 @@ func TestMyOpQuoteRequests(t *testing.T) {
 }
 
 func TestMyOpQuoteRequest(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.MyOpQuoteRequest(&options.RequestForMyOpQuoteRequest{
 		RequestID: 1,
@@ -124,7 +124,7 @@ func TestMyOpQuoteRequest(t *testing.T) {
 }
 
 func TestCreateOpQuoteRequest(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.CreateOpQuoteRequest(&options.RequestForCreateOpQuoteRequest{
 		Underlying: "BTC",
@@ -145,7 +145,7 @@ func TestCreateOpQuoteRequest(t *testing.T) {
 }
 
 func TestModifyOpQuoteRequest(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.ModifyOpQuoteRequest(&options.RequestForModifyOpQuoteRequest{
 		RequestID: 1,
@@ -156,7 +156,7 @@ func TestModifyOpQuoteRequest(t *testing.T) {
 }
 
 func TestCancelOpQuoteRequest(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.CancelOpQuoteRequest(&options.RequestForCancelOpQuoteRequest{
 		RequestID: 1,
@@ -167,7 +167,7 @@ func TestCancelOpQuoteRequest(t *testing.T) {
 }
 
 func TestMyOpQuotes(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.MyOpQuotes(&options.RequestForMyOpQuotes{})
 	assert.NoError(t, err)
@@ -176,7 +176,7 @@ func TestMyOpQuotes(t *testing.T) {
 }
 
 // func TestCreateOpQuote(t *testing.T) {
-// 	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+// 	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 // 	res, err := c.CreateOpQuote(&options.RequestForCreateOpQuote{})
 // 	assert.NoError(t, err)
@@ -185,7 +185,7 @@ func TestMyOpQuotes(t *testing.T) {
 // }
 
 func TestCancelOpQuote(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.CancelOpQuote(&options.RequestForCancelOpQuote{})
 	assert.NoError(t, err)
@@ -194,7 +194,7 @@ func TestCancelOpQuote(t *testing.T) {
 }
 
 func TestAcceptOpQuote(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.AcceptOpQuote(&options.RequestForAcceptOpQuote{
 		QuoteID: 1,
@@ -205,7 +205,7 @@ func TestAcceptOpQuote(t *testing.T) {
 }
 
 func TestOpPositions(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OpPositions(&options.RequestForOpPositions{})
 	assert.NoError(t, err)
@@ -214,7 +214,7 @@ func TestOpPositions(t *testing.T) {
 }
 
 func TestOpTrades(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OpTrades(&options.RequestForOpTrades{})
 	assert.NoError(t, err)
@@ -223,7 +223,7 @@ func TestOpTrades(t *testing.T) {
 }
 
 func TestOpFills(t *testing.T) {
-	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")))
+	c := rest.New(auth.New(os.Getenv("FTXKEY"), os.Getenv("FTXSECRET")), "")
 
 	res, err := c.OpFills(&options.RequestForOpFills{})
 	assert.NoError(t, err)
