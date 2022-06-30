@@ -144,8 +144,6 @@ func Connect(ctx context.Context, ch chan Response, channels, symbols []string, 
 		l = log.New(os.Stdout, "ftx websocket", log.Llongfile)
 	}
 
-	os.Setenv("HTTP_PROXY", "http://127.0.0.1:10809")
-	os.Setenv("HTTPS_PROXY", "http://127.0.0.1:10809")
 	conn, _, err := websocket.DefaultDialer.Dial("wss://ftx.com/ws/", nil)
 	if err != nil {
 		return err
