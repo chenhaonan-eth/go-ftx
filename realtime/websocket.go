@@ -213,7 +213,7 @@ func Connect(ctx context.Context, ch chan Response, channels, symbols []string, 
 			data, _, _, err := jsonparser.Get(msg, "data")
 			if err != nil {
 				if isSubscribe, _ := jsonparser.GetString(msg, "type"); isSubscribe == "subscribed" {
-					l.Printf("[SUCCESS]: %s %+v", isSubscribe, string(msg))
+					l.Printf("[SUCCESS]:%s %s %+v", time.Now().Format("2006-01-02 15:04:05"), isSubscribe, string(msg))
 					continue
 				} else {
 					err = fmt.Errorf("[ERROR]: data err: %v %s", err, string(msg))
@@ -328,7 +328,7 @@ func ConnectForPrivate(ctx context.Context, ch chan Response, key, secret string
 			data, _, _, err := jsonparser.Get(msg, "data")
 			if err != nil {
 				if isSubscribe, _ := jsonparser.GetString(msg, "type"); isSubscribe == "subscribed" {
-					l.Printf("[SUCCESS]: %s %+v", isSubscribe, string(msg))
+					l.Printf("[SUCCESS]:%s %s %+v", time.Now().Format("2006-01-02 15:04:05"), isSubscribe, string(msg))
 					continue
 				} else {
 					err = fmt.Errorf("[ERROR]: data err: %v %s", err, string(msg))
