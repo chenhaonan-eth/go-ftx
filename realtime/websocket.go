@@ -139,18 +139,28 @@ EXIT:
 	return err
 }
 
-func Connect(ctx context.Context, ch chan Response, channels, symbols []string, l *log.Logger) error {
+func Connect(ctx context.Context, ch chan Response, channels, symbols []string, l *log.Logger) {
 	if l == nil {
 		l = log.New(os.Stdout, "ftx websocket", log.Llongfile)
 	}
 
+	var initres Response
+
 	conn, _, err := websocket.DefaultDialer.Dial("wss://ftx.com/ws/", nil)
 	if err != nil {
-		return err
+		l.Printf("[INIT Connect ERROR]: msg error: %+v", err)
+		initres.Type = ERROR
+		initres.Results = fmt.Errorf("%v", err)
+		ch <- initres
+		return
 	}
 
 	if err := subscribe(conn, channels, symbols); err != nil {
-		return err
+		l.Printf("[INIT Connect ERROR]: msg error: %+v", err)
+		initres.Type = ERROR
+		initres.Results = fmt.Errorf("%v", err)
+		ch <- initres
+		return
 	}
 
 	// ping each 15sec for exchange
@@ -256,27 +266,39 @@ func Connect(ctx context.Context, ch chan Response, channels, symbols []string, 
 
 		}
 	}()
-
-	return nil
 }
 
-func ConnectForPrivate(ctx context.Context, ch chan Response, key, secret string, channels []string, l *log.Logger, subaccount ...string) error {
+func ConnectForPrivate(ctx context.Context, ch chan Response, key, secret string, channels []string, l *log.Logger, subaccount ...string) {
 	if l == nil {
 		l = log.New(os.Stdout, "ftx websocket", log.Llongfile)
 	}
 
+	var initres Response
+
 	conn, _, err := websocket.DefaultDialer.Dial("wss://ftx.com/ws/", nil)
 	if err != nil {
-		return err
+		l.Printf("[INIT Connect ERROR]: msg error: %+v", err)
+		initres.Type = ERROR
+		initres.Results = fmt.Errorf("%v", err)
+		ch <- initres
+		return
 	}
 
 	// sign up
 	if err := signature(conn, key, secret, subaccount); err != nil {
-		return err
+		l.Printf("[INIT Connect ERROR]: msg error: %+v", err)
+		initres.Type = ERROR
+		initres.Results = fmt.Errorf("%v", err)
+		ch <- initres
+		return
 	}
 
 	if err := subscribe(conn, channels, nil); err != nil {
-		return err
+		l.Printf("[INIT Connect ERROR]: msg error: %+v", err)
+		initres.Type = ERROR
+		initres.Results = fmt.Errorf("%v", err)
+		ch <- initres
+		return
 	}
 
 	go ping(conn)
@@ -364,8 +386,6 @@ func ConnectForPrivate(ctx context.Context, ch chan Response, key, secret string
 			ch <- res
 		}
 	}()
-
-	return nil
 }
 
 func signature(conn *websocket.Conn, key, secret string, subaccount []string) error {
